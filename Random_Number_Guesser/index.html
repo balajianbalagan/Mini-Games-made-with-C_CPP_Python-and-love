@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Guesser</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+
+<style>
+    body{
+        background: -webkit-linear-gradient(bottom, #e2f418, #d6f77b);
+         background-repeat: no-repeat;
+    }
+    .input-box{
+        background-color: black;
+        margin: 50% ;
+        border-radius: 8px;
+        box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+        height: 410px;
+        margin: 6rem auto 8.1rem auto;
+        width: 329px;
+    }
+    #card-title {
+  font-family: "Raleway Thin", sans-serif;
+  color: white;
+  letter-spacing: 4px;
+  padding-bottom: 23px;
+  padding-top: 13px;
+  text-align: center;
+}
+
+#card-subtitle {
+  font-family: "Raleway Thin", sans-serif;
+  color: white;
+  letter-spacing: 4px;
+  padding-bottom: 23px;
+  font-size: 1rem;
+  padding-top: 13px;
+  text-align: center;
+}
+#card-content{
+    padding: 12px 44px;
+}
+    
+#submit-button{
+    background-color:aliceblue;
+    padding: 2px 5px;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    transition: color 2s;
+}
+#submit-button:hover {
+  background-color: yellow;
+}
+.div-flex{
+    display:flex;
+    flex-direction: column;
+    padding: 15px;
+    margin: 50px 10px;
+}
+.input-field{
+    border-radius: 8px;
+    padding: 15px;
+}
+#test-output{
+    color: white;
+}
+#ithvalue{
+    color: white;
+}
+#hint{
+    color: rgb(255, 213, 0);
+    font-size: 0.5rem;
+}
+</style>
+
+<py-script>
+    import random
+    ans=random.randint(1,50)
+    i=0
+    state=0
+    Element('ithvalue').element.innerText = 5
+</py-script>
+
+<body>
+    <!-- <h1><py-script>print("Hello, World!")</py-script></h1> -->
+    <div class="input-box">
+        <div id="card-content">
+            <h1 id="card-title">Guess the random number within 5 tries</h1>
+            <div id="card-subtitle">
+                <h3>You have</h3>
+                <div id="ithvalue"></div> 
+                <h3>Guesses left</h3>
+            </div>
+            <div id="hint"></div>
+            <div id="test-output"></div>
+            <div class="div-flex">
+                <input type="number" class="input-field" id="test-input" placeholder=0>
+            <button id="submit-button" type="submit" pys-onClick="my_function">OK</button>
+            </div>
+        
+        </div>
+    </div>
+
+    <py-script>
+    from js import console
+    import time
+    def my_function(*args, **kwargs):
+
+        #print('args:', args)
+        #print('kwargs:', kwargs)
+
+        console.log(f'args: {args}')
+        console.log(f'kwargs: {kwargs}')
+        i = int(Element('ithvalue').element.innerText)
+        console.log(f'i: {type(i)}')
+        i-=1
+        inp = int(Element('test-input').element.value)
+        text = ""
+        #print('text:', text)
+        if(i==0):
+            text = "Oops sorry you lose the answer is " + str(ans)
+            Element('hint').element.innerText = text
+            time.sleep(5)
+            text = "restarting the game.."
+            i=5
+            state = 0 
+        if(abs(ans-inp)>0 and abs(ans-inp)<=10 and (ans!=inp) and i!=0):
+            text = "You are close to the answer"
+        if(abs(ans-inp)<=0 and (ans!=inp) and i!=0):
+            text="You are very close to the answer"
+        if(abs(ans-inp)>10 and abs(ans-inp)<=20 and (ans!=inp) and i!=0):
+            text="You are far to the answer"
+        if(abs(ans-inp)>20 and (ans!=inp) and i!=0):
+            print("You are very far to the answer")
+        if(ans==inp):
+            text ="YAAY You Win!"
+            state=1
+        
+        Element('ithvalue').element.innerText = str(i)
+        Element('hint').element.innerText = text
+    </py-script>
+</body>
+</html>
