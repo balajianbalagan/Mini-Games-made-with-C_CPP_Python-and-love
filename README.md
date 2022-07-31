@@ -4,5 +4,5 @@ This repository contains mini games and fun games and scripts written by me usin
 
 <h1>List of hosted games/websites</h1>
 <ol>
-<li><a>https://randomnumberguesserbybalajianbalagan.tiiny.site/</a></li>
+<li><a href="https://randomnumberguesserbybalajianbalagan.tiiny.site/">Random number guesser using pyscript</a></li>
 </ol>
